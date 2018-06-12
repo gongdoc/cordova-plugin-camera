@@ -387,22 +387,25 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
             } else {
 	            /*
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                
                 if (srcType == SAVEDPHOTOALBUM && this.cordova != null) {
 					this.cordova.startActivityForResult((CordovaPlugin) this,
 						Intent.createChooser(intent, new String(title)), // 1);
 							(srcType + 1) * 16 + returnType + 1);
 	                return;
-                }
-                
+                }                
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 */
-
-                Intent chooseIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-				chooseIntent.setType("image/*");
-				this.cordova.startActivityForResult((CordovaPlugin) this,
-					Intent.createChooser(chooseIntent, new String(title)), 44);               
-				return;
+				if (srcType == SAVEDPHOTOALBUM && this.cordova != null) {
+	                Intent chooseIntent = new Intent(Intent.ACTION_PICK,
+	                	MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					chooseIntent.setType("image/*");
+					this.cordova.startActivityForResult((CordovaPlugin) this,
+						Intent.createChooser(chooseIntent, new String(title)), 1);               
+					return;
+				} else {
+	                intent.setAction(Intent.ACTION_GET_CONTENT);
+					intent.addCategory(Intent.CATEGORY_OPENABLE);
+				}
             }
         } else if (this.mediaType == VIDEO) {
             intent.setType("video/*");
