@@ -386,7 +386,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 intent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT, croppedUri);
             } else {
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                
+                /*
                 if (srcType == SAVEDPHOTOALBUM && this.cordova != null) {
 					this.cordova.startActivityForResult((CordovaPlugin) this,
 						Intent.createChooser(intent, new String(title)),
@@ -395,6 +395,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
                 }
                 
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
+                */
             }
         } else if (this.mediaType == VIDEO) {
             intent.setType("video/*");
