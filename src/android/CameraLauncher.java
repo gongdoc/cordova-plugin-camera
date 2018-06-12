@@ -87,7 +87,7 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
 
     private static final int JPEG = 0;                  // Take a picture of type JPEG
     private static final int PNG = 1;                   // Take a picture of type PNG
-    private static final String GET_PICTURE = "사진 선택";
+    private static final String GET_PICTURE = "사진을 찾을 앱을 선택하세요";
     private static final String GET_VIDEO = "Get Video";
     private static final String GET_All = "Get All";
 
@@ -400,7 +400,8 @@ public class CameraLauncher extends CordovaPlugin implements MediaScannerConnect
 	                	MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 					chooseIntent.setType("image/*");
 					this.cordova.startActivityForResult((CordovaPlugin) this,
-						Intent.createChooser(chooseIntent, new String(title)), 1);               
+						Intent.createChooser(chooseIntent, new String(title)),
+							(srcType + 1) * 16 + returnType + 1);               
 					return;
 				} else {
 	                intent.setAction(Intent.ACTION_GET_CONTENT);
